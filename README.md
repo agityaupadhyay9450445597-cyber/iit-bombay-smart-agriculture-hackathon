@@ -1,58 +1,70 @@
-# 🌱 Smart Agriculture Assistant
-# [PPT Explaination].(https://drive.google.com/file/d/1m3oPIQcd-f0qBdJtkPF1WcKQbhMNGxeb/view?usp=sharing)
-# IOT Video -> https://youtube.com/shorts/Lbkhppuiouk
-## 🚀 About the Project
-Our mission is to **empower farmers** with cutting-edge technology, guiding them from the **initial thought of farming** to **profit generation**. We integrate AI, IoT, and data-driven models to optimize every step of the agricultural process.
+🌱 Smart Agriculture Assistant
 
-## 🌾 Key Features
-### 1️⃣ **Crop Selection & Planning**
-- AI-driven **crop recommendation** based on the **season, soil, and market trends**.
-- Helps farmers select the **most profitable crop** for the current month.
+🎥 PPT Explanation
 
-### 2️⃣ **Growth Monitoring & Management**
-- **IoT sensors** track **humidity, temperature, and soil moisture** in real-time.
-- **CNN-based models** analyze plant growth using **image processing**.
+📹 IoT Demo Video
 
-### 3️⃣ **AI-Generated Farming Schedules**
-- **Automated schedules** for **watering, fertilization, and maintenance**.
-- **Gemini AI** helps in **predicting plant health and optimizing care routines**.
+🚀 About the Project
 
-### 4️⃣ **Predictive Analytics & Future Planning**
-- AI-driven insights for **yield predictions and risk analysis**.
-- Helps farmers **plan future harvests** and optimize resource usage.
+Smart Agriculture Assistant empowers farmers through AI-driven automation and IoT hardware integration, guiding them from the initial idea of farming to data-driven profit generation.
+We combine AI models, IoT sensors, and Raspberry Pi-based hardware to make agriculture smarter, faster, and more sustainable.
 
-## 🏗️ Tech Stack
-### **Frontend (React Vite)**
-- Fast and responsive UI for **real-time data visualization**.
-- Displays **growth tracking, alerts, and AI recommendations**.
+Our hardware runs on a Raspberry Pi 4 equipped with a Pi Camera Module V2 and environmental sensors for real-time field monitoring.
+The system analyzes conditions like soil moisture, humidity, and temperature, while CNN-based image processing detects crop health and diseases automatically.
 
-### **Backend (Node.js & Express)**
-- Handles **data processing, authentication, and AI model integration**.
-- Manages **communication with IoT devices** and **cloud storage**.
+🌾 Key Features
+1️⃣ Crop Selection & Planning
 
-### **AI & Machine Learning**
-- **CNN Models** for **crop monitoring and disease detection**.
-- **Google Gemini AI** for **smart farming schedules and insights**.
+AI recommends the most profitable crop based on soil, season, and market trends.
 
-### **IoT & Data Collection**
-- **Humidity, temperature, and soil moisture sensors** for real-time tracking.
-- Data used to **optimize irrigation and fertilization**.
+2️⃣ Growth Monitoring & Management
 
-## 📌 Future Enhancements
-✅ **Automated pest control recommendations**
-✅ **Market price predictions for maximizing profits**
-✅ **Weather-based dynamic farming adjustments**
+Raspberry Pi sensors monitor humidity, temperature, and soil moisture live.
 
-## 🤝 Contribution
-We welcome contributions from developers, AI researchers, and agricultural experts! Feel free to fork the repo and submit PRs. 🚜💡
+Pi Camera + CNN model detect disease and growth patterns.
 
-## 📞 Contact
-For any queries or collaboration, reach out at:
-📧 Email: [arunrathaur92.6@gmail.com](arunrathaur92.6@gmail.com)
-📧 Email: [indreshkverma2004@gmail.com](indreshkverma2004@gmail.com)
-📧 Email: [sharmajayesh4241@gmail.com](sharmajayesh4241@gmail.com)
-📧 Email: [jkhushbu970@gmail.com](jkhushbu970@gmail.com)
----
+3️⃣ AI-Generated Farming Schedules
 
-> **“Smart farming, better yields, sustainable future.”** 🌍
+Gemini AI automates watering, fertilization, and maintenance schedules.
+
+4️⃣ Predictive Analytics & Planning
+
+Predicts yield, weather impact, and resource optimization for future harvests.
+
+🏗️ Tech Stack
+💻 Frontend — React + Vite
+
+Real-time data visualization, growth analytics, and alerts.
+
+⚙️ Backend — Node.js + Express
+
+Data processing, authentication, and AI model integration.
+
+🤖 AI & ML
+
+CNN models for disease detection.
+
+Gemini AI for intelligent farming insights.
+
+🔧 IoT & Hardware Integration
+
+Raspberry Pi 4 controlling humidity, temperature, and moisture sensors.
+
+Pi Camera for real-time image capture and growth analysis.
+
+🔮 Future Development Goals
+
+🚀 Advance our AI models for higher precision in yield prediction and disease detection.
+🌐 Deploy edge-AI on Raspberry Pi to reduce cloud dependency.
+🤝 Expand hardware modules for automated pest control and nutrient balancing.
+📊 Integrate live weather APIs and market prediction models for better decision-making.
+
+📞 Contact
+
+👤 Pranav Patil
+📧 pranavpatil25122005@gmail.com
+
+📱 +91 9765577480
+
+“Smart farming, better yields, sustainable future.” 🌍
 
