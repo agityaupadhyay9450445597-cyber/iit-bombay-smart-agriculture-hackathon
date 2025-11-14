@@ -1,4 +1,16 @@
 # .gitlab-ci.yml
+
+stages:
+  - build
+  - deploy
+
+# Cache node_modules to speed up builds
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - frontend/node_modules/
+
+# Build frontend
 build_frontend:
   stage: build
   image: node:20
@@ -10,5 +22,19 @@ build_frontend:
   artifacts:
     paths:
       - public
+  only:
+    - main
+
+# Deploy to GitLab Pages
+pages:
+  stage: deploy
+  dependencies:
+    - build_frontend
+  script:
+    - mkdir .public
+    - cp -r public/* .public/
+  artifacts:
+    paths:
+      - .public
   only:
     - main
