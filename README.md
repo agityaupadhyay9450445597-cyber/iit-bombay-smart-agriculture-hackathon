@@ -68,5 +68,16 @@ Pi Camera for real-time image capture and growth analysis.
 
 📱 +91 9765577480
 
+👤 Aditya Raj
+📧 adityaraj874567@gmail.com
+
+📱 +91 8800318662
+
+
+Aditya Uphadyay
+📧 adityaraj874567@gmail.com
+
+📱 +91 7052140559
+
 “Smart farming, better yields, sustainable future.” 🌍
 
