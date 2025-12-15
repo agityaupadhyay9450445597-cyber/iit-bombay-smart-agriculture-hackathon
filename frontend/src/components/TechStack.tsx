@@ -1,17 +1,40 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 
 const TechStack = () => {
-  const technologies = [
+  const [techData, setTechData] = useState(null);
+
+  useEffect(() => {
+    fetch(`${import.meta.env.VITE_API_URL}/api/tech/stack`)
+      .then(res => res.json())
+      .then(data => setTechData(data.data))
+      .catch(err => console.log('Using fallback tech stack'));
+  }, []);
+
+  const getColorForCategory = (category) => {
+    const colors = {
+      'Frontend': 'bg-blue-100 text-blue-800',
+      'Backend': 'bg-green-100 text-green-800', 
+      'AI/ML': 'bg-purple-100 text-purple-800',
+      'IoT': 'bg-red-100 text-red-800',
+      'Cloud': 'bg-gray-100 text-gray-800'
+    };
+    return colors[category] || 'bg-gray-100 text-gray-800';
+  };
+
+  const technologies = techData ? 
+    Object.entries(techData).flatMap(([category, techs]) => 
+      techs.map(tech => ({
+        name: tech,
+        category: category.charAt(0).toUpperCase() + category.slice(1).replace('_', '/'),
+        color: getColorForCategory(category.charAt(0).toUpperCase() + category.slice(1))
+      }))
+    ) : [
     { name: "React + Vite", category: "Frontend", color: "bg-blue-100 text-blue-800" },
     { name: "Node.js + Express", category: "Backend", color: "bg-green-100 text-green-800" },
     { name: "Google Gemini AI", category: "AI/ML", color: "bg-purple-100 text-purple-800" },
-    { name: "MongoDB Atlas", category: "Database", color: "bg-yellow-100 text-yellow-800" },
-    { name: "Raspberry Pi 4", category: "IoT Hardware", color: "bg-red-100 text-red-800" },
-    { name: "Pi Camera V2", category: "Computer Vision", color: "bg-indigo-100 text-indigo-800" },
-    { name: "Vercel + Railway", category: "Cloud Deploy", color: "bg-gray-100 text-gray-800" },
-    { name: "TensorFlow", category: "Deep Learning", color: "bg-orange-100 text-orange-800" }
+    { name: "MongoDB Atlas", category: "Database", color: "bg-yellow-100 text-yellow-800" }
   ];
 
   return (

@@ -32,11 +32,36 @@ export default function Landselling() {
           description: `Loaded ${data.length} land listings from the database.`,
         });
       } catch (error) {
-        console.error("Error fetching listings:", error);
+        console.error("Error fetching listings, using demo data:", error);
+        
+        // HACKATHON DEMO - Sample listings
+        const demoData = [
+          {
+            id: "1",
+            title: "Premium Agricultural Land - Punjab",
+            price: 2500000,
+            area: 10,
+            location: [30.7333, 76.7794],
+            description: "Fertile wheat and rice farming land",
+            createdAt: new Date().toISOString(),
+            contact: "9876543210"
+          },
+          {
+            id: "2",
+            title: "Organic Farm Land - Maharashtra", 
+            price: 1800000,
+            area: 8,
+            location: [19.0760, 72.8777],
+            description: "Perfect for organic farming",
+            createdAt: new Date().toISOString(),
+            contact: "9876543211"
+          }
+        ];
+        
+        setListings(demoData);
         toast({
-          title: "Error",
-          description: "Failed to load listings. Please try again later.",
-          variant: "destructive",
+          title: "Demo Data Loaded",
+          description: `Showing ${demoData.length} sample land listings for demonstration.`,
         });
       }
     };

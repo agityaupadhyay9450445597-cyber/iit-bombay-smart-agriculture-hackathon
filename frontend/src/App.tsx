@@ -13,7 +13,9 @@ import DirectMarket from "./pages/DirectMarket";
 import Landselling from "./pages/Landselling";
 import SellerManagement from "./pages/SellerManagement";
 import FarmerForm from "./pages/FarmerForm";
-import WeatherDashboard from "./components/Wether/wether";
+import Enhanced3DWeather from "./components/Enhanced3DWeather";
+import Weather from "./pages/Weather";
+import FarmShieldPage from "./pages/FarmShieldPage";
 import FarmerDetails from "./pages/FarmerDetails";
 import Sarthi from "./pages/Sarthi";
 import FloatingChatbot from "./pages/Sarthi";
@@ -39,7 +41,9 @@ const App = () => (
             <Route path="/direct-market" element={<DirectMarket />} />
             <Route path="/landselling" element={<Landselling />} />
             <Route path="/sellermanagement" element={<SellerManagement />} />
-            <Route path="/wether" element={<WeatherDashboard />} />
+            <Route path="/wether" element={<Weather />} />
+            <Route path="/weather" element={<Weather />} />
+            <Route path="/farmshield" element={<FarmShieldPage />} />
             <Route path="/farmerform" element={<FarmerForm />} />
             <Route path="/tokenform" element={<TokenForm />} />
             <Route path="/details/:phone" element={<FarmerDetails />} />

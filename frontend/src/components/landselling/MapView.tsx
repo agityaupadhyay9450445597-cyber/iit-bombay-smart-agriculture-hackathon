@@ -48,7 +48,7 @@ export default function MapView({ listings: propListings, activeTab }: MapViewPr
       try {
         setIsLoading(true);
         // First try to get listings from the API
-        const response = await fetch("https://iiit-naya-raipur-hakathon.vercel.app/api/land/", {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/land`, {
           signal: AbortSignal.timeout(3000) // Timeout after 3 seconds
         });
 
@@ -75,45 +75,72 @@ export default function MapView({ listings: propListings, activeTab }: MapViewPr
           setAreaRange([0, maxA]);
         }
       } catch (err) {
-        console.warn("API fetch failed, falling back to local storage:", err);
-        // Fallback to local storage
-        const localStorageListings = getListings();
-        if (localStorageListings && localStorageListings.length > 0) {
-          setListings(localStorageListings);
-          setFilteredListings(localStorageListings);
-          
-          // Set max values for filters based on data
-          const maxP = Math.max(
-            ...localStorageListings.map((listing) => listing.price)
-          );
-          const maxA = Math.max(
-            ...localStorageListings.map((listing) => listing.area)
-          );
-          setMaxPrice(maxP);
-          setMaxArea(maxA);
-          setPriceRange([0, maxP]);
-          setAreaRange([0, maxA]);
-        } else {
-          // If no data in local storage either, use prop listings
-          if (propListings && propListings.length > 0) {
-            setListings(propListings);
-            setFilteredListings(propListings);
-            
-            // Set max values for filters based on data
-            const maxP = Math.max(
-              ...propListings.map((listing) => listing.price)
-            );
-            const maxA = Math.max(
-              ...propListings.map((listing) => listing.area)
-            );
-            setMaxPrice(maxP);
-            setMaxArea(maxA);
-            setPriceRange([0, maxP]);
-            setAreaRange([0, maxA]);
-          } else {
-            setError("No listings available. Please add some listings first.");
+        console.warn("API fetch failed, using demo data:", err);
+        
+        // HACKATHON DEMO - Sample land listings for India
+        const demoListings = [
+          {
+            id: "1",
+            title: "Premium Agricultural Land - Punjab",
+            price: 2500000,
+            area: 10,
+            location: [30.7333, 76.7794], // Chandigarh area
+            description: "Fertile wheat and rice farming land with irrigation",
+            createdAt: new Date().toISOString(),
+            contact: "9876543210"
+          },
+          {
+            id: "2", 
+            title: "Organic Farm Land - Maharashtra",
+            price: 1800000,
+            area: 8,
+            location: [19.0760, 72.8777], // Mumbai area
+            description: "Perfect for organic vegetable farming",
+            createdAt: new Date().toISOString(),
+            contact: "9876543211"
+          },
+          {
+            id: "3",
+            title: "Cotton Farm - Gujarat", 
+            price: 3200000,
+            area: 15,
+            location: [23.0225, 72.5714], // Ahmedabad area
+            description: "High-yield cotton farming land with modern facilities",
+            createdAt: new Date().toISOString(),
+            contact: "9876543212"
+          },
+          {
+            id: "4",
+            title: "Rice Paddy Fields - West Bengal",
+            price: 1500000,
+            area: 12,
+            location: [22.5726, 88.3639], // Kolkata area
+            description: "Traditional rice farming with water access",
+            createdAt: new Date().toISOString(),
+            contact: "9876543213"
+          },
+          {
+            id: "5",
+            title: "Sugarcane Plantation - Uttar Pradesh",
+            price: 2800000,
+            area: 20,
+            location: [26.8467, 80.9462], // Lucknow area
+            description: "Established sugarcane farm with processing unit nearby",
+            createdAt: new Date().toISOString(),
+            contact: "9876543214"
           }
-        }
+        ];
+        
+        setListings(demoListings);
+        setFilteredListings(demoListings);
+        
+        // Set max values for filters
+        const maxP = Math.max(...demoListings.map(l => l.price));
+        const maxA = Math.max(...demoListings.map(l => l.area));
+        setMaxPrice(maxP);
+        setMaxArea(maxA);
+        setPriceRange([0, maxP]);
+        setAreaRange([0, maxA]);
       } finally {
         setIsLoading(false);
       }

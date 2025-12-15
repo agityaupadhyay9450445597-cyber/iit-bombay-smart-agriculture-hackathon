@@ -6,22 +6,25 @@ const cors = require('cors');
 const app = express();
 
 // Load routes with error handling
-let farmerRoutes, sellerRoutes, landRoutes, airoute, paymentRoutes, emailroute, tokenRoutes, work;
+let airoute, techRoutes, hackathonRoutes, wildlifeRoutes, internationalFeaturesRoutes;
 
 try {
-    farmerRoutes = require('./routes/farmerRoutes');
-    sellerRoutes = require('./routes/sellerRoute');
-    landRoutes = require('./routes/landRoutes');
     airoute = require("./routes/airoutes");
-    paymentRoutes = require('./routes/payment');
-    emailroute = require("./routes/emailRoutes");
-    tokenRoutes = require("./routes/tokenRoutes");
-    work = require("./routes/workroutes");
+    techRoutes = require("./routes/techRoutes");
+    wildlifeRoutes = require("./routes/enhancedWildlifeRoutes");
+    hackathonRoutes = require("./routes/hackathonRoutes");
+    internationalFeaturesRoutes = require("./routes/internationalFeaturesRoutes");
 } catch (error) {
     console.error('Error loading routes:', error.message);
 }
 
-const mongoURI = process.env.MONGO_URI || 'mongodb://localhost:27017/agriculture';
+// AWS Database Configuration
+const mongoURI = process.env.MONGO_URI || process.env.AWS_DOCUMENTDB_URI || 'mongodb://localhost:27017/agriculture';
+
+// AWS DynamoDB Configuration (Alternative)
+const AWS_REGION = process.env.AWS_REGION || 'ap-south-1';
+const AWS_ACCESS_KEY = process.env.AWS_ACCESS_KEY_ID;
+const AWS_SECRET_KEY = process.env.AWS_SECRET_ACCESS_KEY;
 
 // Middleware
 app.use(cors());
@@ -32,7 +35,32 @@ app.get('/', (req, res) => {
     res.json({ 
         message: 'IIT Bombay Smart Agriculture Backend is running!', 
         status: 'success',
-        timestamp: new Date().toISOString()
+        timestamp: new Date().toISOString(),
+        hackathon: 'IIT Bombay AWS X Impact Challenge 2025',
+        features: [
+            'Smart Agriculture Platform',
+            'FarmShield Pro - Wildlife Protection AI',
+            '3D Weather Analytics',
+            'Crop Health Detection',
+            'Market Intelligence'
+        ],
+        apis: [
+            '/api/wildlife/risk-assessment/:district - Real-time risk for all 36 Maharashtra districts',
+            '/api/wildlife/live-alerts - Live animal sighting alerts',
+            '/api/wildlife/maharashtra-districts - All districts with real-time data',
+            '/api/wildlife/all-animals - Complete animal database (14 species)',
+            '/api/wildlife/live-tracking - Real-time animal movement tracking',
+            '/api/international/computer-vision/analyze - AI Computer Vision Analysis',
+            '/api/international/voice/process-command - Voice Recognition System',
+            '/api/international/blockchain/verify-sighting - Blockchain Verification',
+            '/api/international/iot/devices - IoT Device Management',
+            '/api/international/ar/identify-wildlife - AR Wildlife Identification',
+            '/api/international/global/statistics - Global Statistics',
+            '/api/international/research/analytics - Research Analytics',
+            '/api/ai - Smart Agriculture AI',
+            '/api/tech - Technology Stack',
+            '/api/hackathon - Hackathon Information'
+        ]
     });
 });
 
@@ -50,14 +78,11 @@ if (mongoURI && mongoURI !== 'mongodb://localhost:27017/agriculture') {
 
 // Routes with error handling
 try {
-    app.use('/api/farmers', farmerRoutes);
-    app.use('/api/sellers', sellerRoutes);
-    app.use('/api/land', landRoutes);
-    app.use("/api/email", emailroute);
     app.use("/api/ai", airoute);
-    app.use('/api/payment', paymentRoutes);
-    app.use('/api/tokens', tokenRoutes);
-    app.use('/api/work', work);
+    app.use('/api/tech', techRoutes);
+    app.use('/api/hackathon', hackathonRoutes);
+    app.use('/api/wildlife', wildlifeRoutes);
+    app.use('/api/international', internationalFeaturesRoutes);
 } catch (error) {
     console.error('Route loading error:', error);
 }
@@ -72,7 +97,14 @@ app.use('*', (req, res) => {
 });
 
 
-const PORT = process.env.PORT || 10000;
-app.listen(PORT, () => {
-    console.log(`🚀 Server running on http://localhost:${PORT}`);
-});
+const PORT = process.env.PORT || 10001;
+
+// For Vercel deployment
+if (process.env.NODE_ENV !== 'production') {
+    app.listen(PORT, () => {
+        console.log(`🚀 Server running on http://localhost:${PORT}`);
+    });
+}
+
+// Export for Vercel
+module.exports = app;

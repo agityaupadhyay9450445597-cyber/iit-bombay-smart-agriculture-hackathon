@@ -17,3 +17,20 @@ applications:
         paths:
           - frontend/node_modules/**/*
     appRoot: frontend
+  - backend:
+      phases:
+        preBuild:
+          commands:
+            - cd backend
+            - npm ci
+        build:
+          commands:
+            - echo "Backend build complete"
+      artifacts:
+        baseDirectory: backend
+        files:
+          - '**/*'
+      cache:
+        paths:
+          - backend/node_modules/**/*
+    appRoot: backend
